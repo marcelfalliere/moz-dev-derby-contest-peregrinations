@@ -1,0 +1,162 @@
+
+<html>
+<head>
+<style type="text/css">
+body {background-color:black;}
+
+#rubyk-wrapper {
+-webkit-transition: -webkit-transform 50ms linear;
+-webkit-transform-style: preserve-3d;
+
+position: relative;
+margin: 10px auto;
+height: 400px;
+width: 400px;
+}
+
+.cube-wrapper { position: absolute;}
+.cube {
+position: relative;
+margin: 100px auto;
+height: 400px;
+width: 400px;
+}
+
+.face {
+	position: absolute;
+	height: 60px;
+	width: 60px;
+}
+
+.face.left { -webkit-transform: rotateY(90deg) translateZ(-30px); }
+.face.front { -webkit-transform: translateZ(30px); }
+.face.top { -webkit-transform: rotateX(90deg) translateZ(30px) ; }
+.face.bottom { -webkit-transform: rotateX(90deg) translateZ(-30px) ; }
+.face.right { -webkit-transform: rotateY(90deg) translateZ(30px); }
+
+.face.left.middleSlice { -webkit-transform: rotateY(90deg) translateZ(-30px) translateX(60px);  }
+.face.front.middleSlice { -webkit-transform: translateZ(30px) translateY(-60px); }
+.face.top.middleSlice { -webkit-transform: rotateX(90deg) translateZ(30px) translateY(-60px); }
+.face.bottom.middleSlice { -webkit-transform: rotateX(90deg) translateZ(-30px) translateY(-60px); }
+.face.right.middleSlice { -webkit-transform: rotateY(90deg) translateZ(30px) translateY(-60px); }
+
+
+.face.red { background-color:red; }
+.face.white { background-color:white; }
+.face.orange { background-color:orange; }
+.face.blue { background-color:blue; }
+.face.green { background-color:green; }
+
+.top-front-left { top:0px; left:0px; }
+.top-front-middle { top:0px; left:60px; }
+.top-front-right { top:0px; left:120px }
+.middle-front-left { top:60px; left:0px; }
+.middle-front-middle { top:60px; left:60px; }
+.middle-front-right { top:60px; left:120px; }
+.bottom-front-left { top:120px; left:0px; }
+.bottom-front-middle { top:120px; left:60px; }
+.bottom-front-right { top:120px; left:120px; }
+
+</style>
+
+<script type="text/javascript">
+function initcontroles() {
+	var body = document.getElementById("body");
+	var rubyks = document.getElementById("rubyk-wrapper");
+	var mousepressed = false;
+
+	rubyks.style.webkitTransform = 'rotateX(Odeg) rotateY(0deg)';
+	
+	var delta = { state_init:true, prevRotateX:0, prevRotateY:0, prevPageX:0, prevPageY:0 }
+	body.onmousedown = function() { mousepressed=true; }
+	body.onmouseup	 = function() { mousepressed=false; }
+	body.onmousemove = function(e) {
+		if(mousepressed) {
+			console.log(e.pageX);
+			if (delta.state_init == true) {
+				delta.prevPageX = e.pageX;
+				delta.prevPageY = e.pageY;
+				delta.state_init = false;
+			} else {
+				console.log("(" + delta.prevRotateX + ") "+  delta.prevPageX + " " + e.pageX) ;
+
+				newRotateX = delta.prevRotateX + delta.prevPageX - e.pageX;
+				newRotateY = delta.prevRotateY + delta.prevPageY - e.pageY;
+				delta.prevRotateX = newRotateX;
+				delta.prevRotateY = newRotateY;
+				delta.prevPageX = e.pageX;
+				delta.prevPageY = e.pageY;
+				
+				rubyks.style.webkitTransform = 'rotateX('+ newRotateY +'deg) rotateY('+ newRotateX +'deg)';
+
+			}
+		}
+	}
+}
+</script>
+
+</head>
+<body onload="initcontroles()" id="body">
+
+	<div id="rubyk-wrapper">
+
+	
+
+		<div class="cube-wrapper top-front-left"><div class="cube">
+				<div class="face red top"></div>
+				<div class="face white front"></div>
+				<div class="face orange left"></div>
+		</div></div>
+		<div class="cube-wrapper top-front-middle"><div class="cube">
+				<div class="face blue top"></div>
+				<div class="face green front"></div>
+		</div></div>
+		<div class="cube-wrapper top-front-right"><div class="cube">
+				<div class="face red top"></div>
+				<div class="face blue front"></div>
+				<div class="face orange right"></div>
+		</div></div>
+
+		<div class="cube-wrapper middle-front-left"><div class="cube">
+				<div class="face blue front"></div>
+				<div class="face orange left"></div>
+		</div></div>
+		<div class="cube-wrapper middle-front-middle"><div class="cube">
+				<div class="face orange front"></div>
+		</div></div>
+		<div class="cube-wrapper middle-front-right"><div class="cube">
+				<div class="face orange front"></div>
+				<div class="face green right"></div>
+		</div></div>
+
+		<div class="cube-wrapper bottom-front-left"><div class="cube">
+				<div class="face orange bottom"></div>
+				<div class="face white front"></div>
+				<div class="face blue left"></div>
+		</div></div>
+		<div class="cube-wrapper bottom-front-middle"><div class="cube">
+				<div class="face red bottom"></div>
+				<div class="face orange front"></div>
+		</div></div>
+		<div class="cube-wrapper bottom-front-right"><div class="cube">
+				<div class="face white bottom"></div>
+				<div class="face blue front"></div>
+				<div class="face orange right"></div>
+		</div></div>
+
+
+
+		<div class="cube-wrapper top-left"><div class="cube">
+				<div class="face blue top middleSlice"></div>
+				<div class="face blue left middleSlice"></div>
+		</div></div>
+
+		<div class="cube-wrapper middle-left"><div class="cube">
+				<div class="face orange left middleSlice"></div>
+		</div></div>
+
+	</div>
+
+</body>
+
+</html>
