@@ -1,0 +1,61 @@
+<html>
+	<head>
+
+		<script type="text/javascript" src="jquery-1.7.1.min.js"></script>
+		<script type="text/javascript" src="fmf3d.core.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				var bodies = {
+					solids: [
+						{
+							coord: { x:0, y:0, z:0 },
+							size: { width:100, height:200, depth:600 }
+						}
+					]
+				}
+				var main = new Fmf3D(bodies);
+			})
+		</script>
+		<style type="text/css">
+			body { background-color:black; margin: 0; padding: 0; }
+
+			#wrapper { 
+				position: relative;
+				float: left;
+				overflow: hidden;
+				width: 100%;
+				height: 100%;
+				-webkit-perspective: 700;
+				-moz-perspective: 700px;
+			
+			/*
+				-webkit-transform-origin-x: 132.3032656595974px; 
+				-webkit-transform-origin-y: 57.28957188205928px; 
+				-webkit-transform-origin-z: -150px; 
+				-webkit-transform: 
+					translate3d(-132.3032656595974px, -57.28957188205928px, 700px) 
+					rotateX(246.5deg) 
+					rotateY(0deg) 
+					rotateZ(-266deg); 
+			*/
+				
+
+			}
+			#inner { 
+				position: absolute;
+				-webkit-transform-style: preserve-3d;
+				-moz-transform-style: preserve-3d;
+
+			}
+			.face { position:absolute; background-color:white; }
+		</style>
+	</head>
+	<body>
+		<div id="wrapper">
+			<div id="inner">
+
+			</div>
+		</div>
+	</body>
+
+</html>

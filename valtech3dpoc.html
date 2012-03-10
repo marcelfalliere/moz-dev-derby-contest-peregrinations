@@ -1,0 +1,138 @@
+<html>
+	<head>
+
+		<style type="text/css">
+			body, html { margin:0; padding:0; width:100%; height:100%; overflow: hidden; }
+
+			#container { width:100%; height:100%; position: relative; -webkit-perspective:1200px; }
+			
+			#inner { 
+				position:absolute; 
+				width:100%; 
+				height:100%; 
+				position: absolute; 
+				-webkit-transform-style: preserve-3d; 
+				-webkit-transform: translateX(400px);
+			}
+
+			.plane { 
+				display: block;
+				position: absolute;
+				border: 2px solid black; 
+			}
+
+			#sol_cours { 
+				width:500px; 
+				height:1000px; 
+				-webkit-transform: rotateX( -90deg ) translateZ( -100px ); 
+				background-color:orange; 
+			}
+
+			#mur_1er_etage_aile_ouest { 
+				width:500px; 
+				height:200px; 
+				-webkit-transform: rotateY(90deg) translateY(200px) translateZ(250px) ; 
+				background-color:grey; 
+			}
+
+		</style>
+
+
+		<script type="text/javascript" src="jquery-1.7.1.min.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+
+				var viewObject = {
+					translateX:400,
+					translateY:0,
+					translateZ:0
+				}
+
+				var arrowDown = false;	var arrowDownAccel = 0.01;	arrowDownCtrlAccel=0.01;
+				var arrowUp = false;	var arrowUpAccel = 0.01;	arrowUpCtrlAccel=0.01;
+				var arrowLeft = false;	var arrowLeftAccel = 0.01;
+				var arrowRight = false;	var arrowRightAccel = 0.01;
+				var ctrlPressed = false;
+
+				$("body").keydown(function(event){
+					switch(event.keyCode) {
+						case 37: arrowLeft=true; break;
+						case 38: arrowUp=true; break;
+						case 39: arrowRight=true; break;
+						case 40: arrowDown=true; break;
+						case 17: ctrlPressed=true; break;
+					}
+					
+					if(arrowLeft) { 
+						viewObject.translateX = viewObject.translateX + Math.exp(arrowLeftAccel); 
+						arrowLeftAccel=arrowLeftAccel+0.05 
+					}
+					if(arrowRight) { viewObject.translateX = viewObject.translateX - Math.exp(arrowRightAccel); 
+						arrowRightAccel=arrowRightAccel+0.05 
+					}
+					if(arrowUp && !ctrlPressed) { 
+						viewObject.translateY = viewObject.translateY + Math.exp(arrowUpAccel); 
+						arrowUpAccel=arrowUpAccel+0.05 
+					}
+					if(arrowUp && ctrlPressed) { 
+						viewObject.translateZ = viewObject.translateZ + Math.exp(arrowUpCtrlAccel); 
+						arrowUpCtrlAccel=arrowUpCtrlAccel+0.05 
+					}
+					if(arrowDown && !ctrlPressed) { 
+						viewObject.translateY = viewObject.translateY - Math.exp(arrowDownAccel); 
+						arrowDownAccel=arrowDownAccel+0.05 
+					}
+					if(arrowDown && ctrlPressed) { 
+						viewObject.translateZ = viewObject.translateZ - Math.exp(arrowDownCtrlAccel); 
+						arrowDownCtrlAccel=arrowDownCtrlAccel+0.05 
+					}
+
+					console.log(arrowLeftAccel);
+
+
+					$("#inner").attr("style", "-webkit-transform:translateX("+viewObject.translateX+"px) translateZ("+viewObject.translateZ+"px) translateY("+viewObject.translateY+"px);")
+
+					//event.preventDefault();
+				});
+
+				$("body").keyup(function(event){
+					switch(event.keyCode) {
+						case 37: 
+							arrowLeft=false; 
+							arrowLeftAccel = 0.01; 
+							break;
+						case 38: 
+							arrowUp=false; 
+							arrowUpAccel = 0.01;
+							break;
+						case 39: 
+							arrowRight=false; 
+							arrowRightAccel = 0.01;
+							break;
+						case 40: 
+							arrowDown=false; 
+							arrowDownAccel = 0.01;
+							break;
+						case 17:
+							ctrlPressed=false;
+							arrowUpCtrlAccel=0.01;
+							arrowDownCtrlAccel=0.01;
+							break;
+					}
+				});
+					
+			})
+		</script>
+
+	</head>
+	<body>
+
+		<div id="container">
+			<div id="inner">
+				<div id="sol_cours" class="plane">sol</div>
+				<div id="mur_1er_etage_aile_ouest" class="plane">mur</div>
+			</div>
+		</div>
+
+	</body>
+</html>

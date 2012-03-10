@@ -28,24 +28,19 @@ width: 400px;
 	width: 60px;
 }
 
-.face.left { -webkit-transform: rotateY(90deg) translateZ(-30px); }
-.face.front { -webkit-transform: translateZ(30px); }
-.face.top { -webkit-transform: rotateX(90deg) translateZ(30px) ; }
-.face.bottom { -webkit-transform: rotateX(90deg) translateZ(-30px) ; }
-.face.right { -webkit-transform: rotateY(90deg) translateZ(30px); }
-
-.face.left.middleSlice { -webkit-transform: rotateY(90deg) translateZ(-30px) translateX(60px);  }
-.face.front.middleSlice { -webkit-transform: translateZ(30px) translateY(-60px); }
-.face.top.middleSlice { -webkit-transform: rotateX(90deg) translateZ(30px) translateY(-60px); }
-.face.bottom.middleSlice { -webkit-transform: rotateX(90deg) translateZ(-30px) translateY(-60px); }
-.face.right.middleSlice { -webkit-transform: rotateY(90deg) translateZ(30px) translateY(-60px); }
-
 
 .face.red { background-color:red; }
 .face.white { background-color:white; }
 .face.orange { background-color:orange; }
 .face.blue { background-color:blue; }
 .face.green { background-color:green; }
+.face.yellow { background-color:yellow; }
+
+.face.left { -webkit-transform: rotateY(90deg) translateZ(-30px); }
+.face.front { -webkit-transform: translateZ(30px); }
+.face.top { -webkit-transform: rotateX(90deg) translateZ(30px) ; }
+.face.bottom { -webkit-transform: rotateX(90deg) translateZ(-30px) ; }
+.face.right { -webkit-transform: rotateY(90deg) translateZ(30px); }
 
 .top-front-left { top:0px; left:0px; }
 .top-front-middle { top:0px; left:60px; }
@@ -57,10 +52,29 @@ width: 400px;
 .bottom-front-middle { top:120px; left:60px; }
 .bottom-front-right { top:120px; left:120px; }
 
-</style>
+.top-middle-left .face.top { -webkit-transform: rotateX(90deg) translateZ(30px) translateY(-60px); }
+.top-middle-left .face.left { -webkit-transform: rotateY(90deg) translateZ(-30px) translateX(60px); }
 
+.middle-middle-left .face.left { top:60px; -webkit-transform: rotateY(90deg) translateZ(-30px) translateX(60px); }
+
+.bottom-middle-left .face.left { top:120px; -webkit-transform: rotateY(90deg) translateZ(-30px) translateX(60px); }
+.bottom-middle-left .face.bottom { top:120px; -webkit-transform: rotateX(90deg) translateZ(-30px) translateY(-60px);}
+
+.cube-wrapper { -webkit-transform-origin:50% 50%; }
+.rotation {
+	-webkit-animation: rotateCube 8s 1 ease-in-out;
+}
+/*animation css*/
+@-webkit-keyframes rotateCube {
+	100% {
+		-webkit-transform: rotateZ( 90deg );
+	}
+}
+
+</style>
+<script type="text/javascript" src="jquery-1.7.1.min.js"></script>
 <script type="text/javascript">
-function initcontroles() {
+function init() {
 	var body = document.getElementById("body");
 	var rubyks = document.getElementById("rubyk-wrapper");
 	var mousepressed = false;
@@ -92,15 +106,50 @@ function initcontroles() {
 			}
 		}
 	}
+
+	$(".middle-front-middle").keydown(function(event) {
+		if (event.keyCode == 39) {
+			// droite
+
+		}
+	});
+	$("body").keydown(function(event) {
+		console.log(event);
+	});
 }
+
+function rotateSlice(face, direction) {
+	switch(face) {
+		case "FRONT":
+			// TODO
+
+
+			break;
+		case "BACK":
+			// TODO
+			break;
+		case "LEFT":
+			// TODO
+			break;
+		case "RIGHT":
+			// TODO
+			break;
+		case "TOP":
+			// TODO
+			break;
+		case "LEFT":
+			// TODO
+			break;
+	}
+}
+
 </script>
 
 </head>
-<body onload="initcontroles()" id="body">
+<body onload="init()" id="body">
 
 	<div id="rubyk-wrapper">
 
-	
 
 		<div class="cube-wrapper top-front-left"><div class="cube">
 				<div class="face red top"></div>
@@ -108,51 +157,56 @@ function initcontroles() {
 				<div class="face orange left"></div>
 		</div></div>
 		<div class="cube-wrapper top-front-middle"><div class="cube">
-				<div class="face blue top"></div>
-				<div class="face green front"></div>
+				<div class="face red top"></div>
+				<div class="face white front"></div>
 		</div></div>
 		<div class="cube-wrapper top-front-right"><div class="cube">
 				<div class="face red top"></div>
-				<div class="face blue front"></div>
-				<div class="face orange right"></div>
+				<div class="face white front"></div>
+				<div class="face green right"></div>
 		</div></div>
 
 		<div class="cube-wrapper middle-front-left"><div class="cube">
-				<div class="face blue front"></div>
+				<div class="face white front"></div>
 				<div class="face orange left"></div>
 		</div></div>
 		<div class="cube-wrapper middle-front-middle"><div class="cube">
-				<div class="face orange front"></div>
+				<div class="face white front"></div>
 		</div></div>
 		<div class="cube-wrapper middle-front-right"><div class="cube">
-				<div class="face orange front"></div>
+				<div class="face white front"></div>
 				<div class="face green right"></div>
 		</div></div>
 
 		<div class="cube-wrapper bottom-front-left"><div class="cube">
-				<div class="face orange bottom"></div>
+				<div class="face blue bottom"></div>
 				<div class="face white front"></div>
-				<div class="face blue left"></div>
+				<div class="face orange left"></div>
 		</div></div>
 		<div class="cube-wrapper bottom-front-middle"><div class="cube">
-				<div class="face red bottom"></div>
-				<div class="face orange front"></div>
+				<div class="face blue bottom"></div>
+				<div class="face white front"></div>
 		</div></div>
 		<div class="cube-wrapper bottom-front-right"><div class="cube">
-				<div class="face white bottom"></div>
-				<div class="face blue front"></div>
-				<div class="face orange right"></div>
+				<div class="face blue bottom"></div>
+				<div class="face white front"></div>
+				<div class="face green right"></div>
+		</div></div>
+		
+
+
+		<div class="cube-wrapper top-middle-left"><div class="cube">
+				<div class="face red top"></div>
+				<div class="face orange left"></div>
 		</div></div>
 
-
-
-		<div class="cube-wrapper top-left"><div class="cube">
-				<div class="face blue top middleSlice"></div>
-				<div class="face blue left middleSlice"></div>
+		<div class="cube-wrapper middle-middle-left"><div class="cube">
+				<div class="face red left"></div>
 		</div></div>
 
-		<div class="cube-wrapper middle-left"><div class="cube">
-				<div class="face orange left middleSlice"></div>
+		<div class="cube-wrapper bottom-middle-left"><div class="cube">
+				<div class="face orange left"></div>
+				<div class="face blue bottom"></div>
 		</div></div>
 
 	</div>
