@@ -4,36 +4,148 @@
 		<style type="text/css">
 			body, html { margin:0; padding:0; width:100%; height:100%; overflow: hidden; }
 
-			#container { width:100%; height:100%; position: relative; -webkit-perspective:1200px; }
+			#container { width:100%; height:100%; position: relative; -webkit-perspective:1000px; float:left; 
+			}
 			
 			#inner { 
-				position:absolute; 
-				width:100%; 
-				height:100%; 
+				left:50%; 
+				top:50%; 
 				position: absolute; 
 				-webkit-transform-style: preserve-3d; 
-				-webkit-transform: translateX(400px);
+				-webkit-transform: translateX(-200px) translateZ(-500px) translateY(-200px) rotateY(0deg);
+				-webkit-transform-origin-x: 0px;
+				-webkit-transform-origin-z: -200px;
 			}
+
 
 			.plane { 
 				display: block;
 				position: absolute;
-				border: 2px solid black; 
+				background-size:100% 100%;
+				border:2px solid red;
 			}
+			.oneside { -webkit-backface-visibility: hidden; }
 
 			#sol_cours { 
-				width:500px; 
-				height:1000px; 
-				-webkit-transform: rotateX( -90deg ) translateZ( -100px ); 
-				background-color:orange; 
+				width:600px; 
+				height:1580px; 
+				-webkit-transform: rotateX(90deg) translateZ(340px)  translateX(-120px) translateY(-40px); 
+				background-image: url('textures/pavement3.jpg'); 
+				background-size:auto;
 			}
 
-			#mur_1er_etage_aile_ouest { 
-				width:500px; 
-				height:200px; 
-				-webkit-transform: rotateY(90deg) translateY(200px) translateZ(250px) ; 
-				background-color:grey; 
+
+			#tour_base {
+				width:300px; 
+				height:800px; 
+				-webkit-transform: translateY(-350px) translateZ(-750px) translateX(30px) ; 
+				background-image: url('textures/tour_base.jpg');
 			}
+			#tour_murouest {
+				width:80px; 
+				height:800px; 
+				-webkit-transform: rotateY(90deg) translateY(-350px) translateZ(290px) translateX(789px); 
+				background-image: url('textures/murtour2.jpg');
+			}
+			#tour_murest {
+				width:80px; 
+				height:800px; 
+				-webkit-transform: rotateY(-90deg)  translateY(-350px) translateZ(10px) translateX(-789px);
+				background-image: url('textures/murtour1.jpg');
+			}
+			#tour_fenetreouest {
+				width:150px; 
+				height:800px; 
+				-webkit-transform: translateY(-350px) translateZ(-830px) translateX(330px);
+				background-image: url('textures/tourfenetres.jpg');
+			}
+			#tour_fenetreest {
+				width:150px; 
+				height:800px; 
+				-webkit-transform: translateY(-350px) translateZ(-830px) translateX(-120px);
+				background-image: url('textures/tourfenetres2.jpg');
+			}
+
+
+
+			.bac .plane { 
+				width:50px;
+				height:50px;
+			}
+
+			.bac .tree { background-image:url('textures/tree.png'); height:100px;  }
+			.bac .plane:not(.tree) { background-image:url('textures/bac.jpg'); }
+
+			#bac_ouest_1 .front { -webkit-transform: translateY(400px) translateX(300px) translateZ(500px); }
+			#bac_ouest_1 .back { -webkit-transform: translateY(400px) translateX(300px) translateZ(450px); }
+			#bac_ouest_1 .left { -webkit-transform: translateY(400px) translateX(275px) translateZ(475px) rotateY(90deg); }
+			#bac_ouest_1 .right { -webkit-transform: translateY(400px) translateX(325px) translateZ(475px) rotateY(90deg); }
+			#bac_ouest_1 .tree { -webkit-transform: translateY(300px) translateX(300px) translateZ(475px);  }
+			#bac_ouest_1 .tree.second { -webkit-transform: translateY(300px) translateX(300px) translateZ(475px) rotateY(90deg);  }
+
+			#bac_ouest_2 .front { -webkit-transform: translateY(400px) translateX(300px) translateZ(300px); }
+			#bac_ouest_2 .back { -webkit-transform: translateY(400px) translateX(300px) translateZ(250px); }
+			#bac_ouest_2 .left { -webkit-transform: translateY(400px) translateX(275px) translateZ(275px) rotateY(90deg); }
+			#bac_ouest_2 .right { -webkit-transform: translateY(400px) translateX(325px) translateZ(275px) rotateY(90deg); }
+			#bac_ouest_2 .tree { -webkit-transform: translateY(300px) translateX(300px) translateZ(275px);  }
+			#bac_ouest_2 .tree.second { -webkit-transform: translateY(300px) translateX(300px) translateZ(275px) rotateY(90deg);  }
+
+			#bac_ouest_3 .front { -webkit-transform: translateY(400px) translateX(300px) translateZ(100px); }
+			#bac_ouest_3 .back { -webkit-transform: translateY(400px) translateX(300px) translateZ(50px); }
+			#bac_ouest_3 .left { -webkit-transform: translateY(400px) translateX(275px) translateZ(75px) rotateY(90deg); }
+			#bac_ouest_3 .right { -webkit-transform: translateY(400px) translateX(325px) translateZ(75px) rotateY(90deg); }
+			#bac_ouest_3 .tree { -webkit-transform: translateY(300px) translateX(300px) translateZ(75px);  }
+			#bac_ouest_3 .tree.second { -webkit-transform: translateY(300px) translateX(300px) translateZ(75px) rotateY(90deg);  }
+
+			#bac_ouest_4 .front { -webkit-transform: translateY(400px) translateX(300px) translateZ(-100px); }
+			#bac_ouest_4 .back { -webkit-transform: translateY(400px) translateX(300px) translateZ(-150px); }
+			#bac_ouest_4 .left { -webkit-transform: translateY(400px) translateX(275px) translateZ(-125px) rotateY(90deg); }
+			#bac_ouest_4 .right { -webkit-transform: translateY(400px) translateX(325px) translateZ(-125px) rotateY(90deg); }
+			#bac_ouest_4 .tree { -webkit-transform: translateY(300px) translateX(300px) translateZ(-125px);  }
+			#bac_ouest_4 .tree.second { -webkit-transform: translateY(300px) translateX(300px) translateZ(-125px) rotateY(90deg);  }
+
+			#bac_ouest_5 .front { -webkit-transform: translateY(400px) translateX(300px) translateZ(-300px); }
+			#bac_ouest_5 .back { -webkit-transform: translateY(400px) translateX(300px) translateZ(-350px); }
+			#bac_ouest_5 .left { -webkit-transform: translateY(400px) translateX(275px) translateZ(-325px) rotateY(90deg); }
+			#bac_ouest_5 .right { -webkit-transform: translateY(400px) translateX(325px) translateZ(-325px) rotateY(90deg); }
+			#bac_ouest_5 .tree { -webkit-transform: translateY(300px) translateX(300px) translateZ(-325px);  }
+			#bac_ouest_5 .tree.second { -webkit-transform: translateY(300px) translateX(300px) translateZ(-325px) rotateY(90deg);  }
+
+
+			#bac_est_1 .front { -webkit-transform: translateY(400px) translateX(0px) translateZ(500px); }
+			#bac_est_1 .back { -webkit-transform: translateY(400px) translateX(0px) translateZ(450px); }
+			#bac_est_1 .left { -webkit-transform: translateY(400px) translateX(25px) translateZ(475px) rotateY(90deg); }
+			#bac_est_1 .right { -webkit-transform: translateY(400px) translateX(-25px) translateZ(475px) rotateY(90deg); }
+			#bac_est_1 .tree { -webkit-transform: translateY(300px) translateX(0px) translateZ(475px);  }
+			#bac_est_1 .tree.second { -webkit-transform: translateY(300px) translateX(0px) translateZ(475px) rotateY(90deg);  }
+
+			#bac_est_2 .front { -webkit-transform: translateY(400px) translateX(0px) translateZ(300px); }
+			#bac_est_2 .back { -webkit-transform: translateY(400px) translateX(0px) translateZ(250px); }
+			#bac_est_2 .left { -webkit-transform: translateY(400px) translateX(25px) translateZ(275px) rotateY(90deg); }
+			#bac_est_2 .right { -webkit-transform: translateY(400px) translateX(-25px) translateZ(275px) rotateY(90deg); }
+			#bac_est_2 .tree { -webkit-transform: translateY(300px) translateX(0px) translateZ(275px);  }
+			#bac_est_2 .tree.second { -webkit-transform: translateY(300px) translateX(0px) translateZ(275px) rotateY(90deg);  }
+
+			#bac_est_3 .front { -webkit-transform: translateY(400px) translateX(0px) translateZ(100px); }
+			#bac_est_3 .back { -webkit-transform: translateY(400px) translateX(0px) translateZ(50px); }
+			#bac_est_3 .left { -webkit-transform: translateY(400px) translateX(25px) translateZ(75px) rotateY(90deg); }
+			#bac_est_3 .right { -webkit-transform: translateY(400px) translateX(-25px) translateZ(75px) rotateY(90deg); }
+			#bac_est_3 .tree { -webkit-transform: translateY(300px) translateX(0px) translateZ(75px);  }
+			#bac_est_3 .tree.second { -webkit-transform: translateY(300px) translateX(0px) translateZ(75px) rotateY(90deg);  }
+
+			#bac_est_4 .front { -webkit-transform: translateY(400px) translateX(0px) translateZ(-100px); }
+			#bac_est_4 .back { -webkit-transform: translateY(400px) translateX(0px) translateZ(-150px); }
+			#bac_est_4 .left { -webkit-transform: translateY(400px) translateX(25px) translateZ(-125px) rotateY(90deg); }
+			#bac_est_4 .right { -webkit-transform: translateY(400px) translateX(-25px) translateZ(-125px) rotateY(90deg); }
+			#bac_est_4 .tree { -webkit-transform: translateY(300px) translateX(0px) translateZ(-125px);  }
+			#bac_est_4 .tree.second { -webkit-transform: translateY(300px) translateX(0px) translateZ(-125px) rotateY(90deg);  }
+
+			#bac_est_5 .front { -webkit-transform: translateY(400px) translateX(0px) translateZ(-300px); }
+			#bac_est_5 .back { -webkit-transform: translateY(400px) translateX(0px) translateZ(-350px); }
+			#bac_est_5 .left { -webkit-transform: translateY(400px) translateX(25px) translateZ(-325px) rotateY(90deg); }
+			#bac_est_5 .right { -webkit-transform: translateY(400px) translateX(-25px) translateZ(-325px) rotateY(90deg); }
+			#bac_est_5 .tree { -webkit-transform: translateY(300px) translateX(0px) translateZ(-325px);  }
+			#bac_est_5 .tree.second { -webkit-transform: translateY(300px) translateX(0px) translateZ(-325px) rotateY(90deg);  }
 
 		</style>
 
@@ -43,83 +155,73 @@
 			$(document).ready(function(){
 
 				var viewObject = {
-					translateX:400,
-					translateY:0,
-					translateZ:0
+					translateX:-200,
+					translateY:-200,
+					translateZ:-500,
+					rotateY:0,
+					originX:0,
+					originZ:-200
 				}
 
-				var arrowDown = false;	var arrowDownAccel = 0.01;	arrowDownCtrlAccel=0.01;
-				var arrowUp = false;	var arrowUpAccel = 0.01;	arrowUpCtrlAccel=0.01;
-				var arrowLeft = false;	var arrowLeftAccel = 0.01;
-				var arrowRight = false;	var arrowRightAccel = 0.01;
-				var ctrlPressed = false;
-
+				var arrowDown = false;	var arrowDownAccel = 0.5;
+				var arrowUp = false;	var arrowUpAccel = 0.5;
 				$("body").keydown(function(event){
 					switch(event.keyCode) {
-						case 37: arrowLeft=true; break;
-						case 38: arrowUp=true; break;
-						case 39: arrowRight=true; break;
 						case 40: arrowDown=true; break;
-						case 17: ctrlPressed=true; break;
+						case 38: arrowUp=true; break;
 					}
-					
-					if(arrowLeft) { 
-						viewObject.translateX = viewObject.translateX + Math.exp(arrowLeftAccel); 
-						arrowLeftAccel=arrowLeftAccel+0.05 
+					if(arrowUp) { 
+						viewObject.translateZ = viewObject.translateZ + Math.exp(arrowUpAccel); 
+						viewObject.originZ = viewObject.originZ - Math.exp(arrowUpAccel);
+						arrowUpAccel=arrowUpAccel+0.2
 					}
-					if(arrowRight) { viewObject.translateX = viewObject.translateX - Math.exp(arrowRightAccel); 
-						arrowRightAccel=arrowRightAccel+0.05 
+					if(arrowDown) { 
+						viewObject.translateZ = viewObject.translateZ - Math.exp(arrowDownAccel); 
+						arrowDownAccel=arrowDownAccel+0.2 
 					}
-					if(arrowUp && !ctrlPressed) { 
-						viewObject.translateY = viewObject.translateY + Math.exp(arrowUpAccel); 
-						arrowUpAccel=arrowUpAccel+0.05 
-					}
-					if(arrowUp && ctrlPressed) { 
-						viewObject.translateZ = viewObject.translateZ + Math.exp(arrowUpCtrlAccel); 
-						arrowUpCtrlAccel=arrowUpCtrlAccel+0.05 
-					}
-					if(arrowDown && !ctrlPressed) { 
-						viewObject.translateY = viewObject.translateY - Math.exp(arrowDownAccel); 
-						arrowDownAccel=arrowDownAccel+0.05 
-					}
-					if(arrowDown && ctrlPressed) { 
-						viewObject.translateZ = viewObject.translateZ - Math.exp(arrowDownCtrlAccel); 
-						arrowDownCtrlAccel=arrowDownCtrlAccel+0.05 
-					}
-
-					console.log(arrowLeftAccel);
-
-
-					$("#inner").attr("style", "-webkit-transform:translateX("+viewObject.translateX+"px) translateZ("+viewObject.translateZ+"px) translateY("+viewObject.translateY+"px);")
-
-					//event.preventDefault();
+					updateCss();
 				});
-
 				$("body").keyup(function(event){
 					switch(event.keyCode) {
-						case 37: 
-							arrowLeft=false; 
-							arrowLeftAccel = 0.01; 
-							break;
 						case 38: 
 							arrowUp=false; 
 							arrowUpAccel = 0.01;
-							break;
-						case 39: 
-							arrowRight=false; 
-							arrowRightAccel = 0.01;
 							break;
 						case 40: 
 							arrowDown=false; 
 							arrowDownAccel = 0.01;
 							break;
-						case 17:
-							ctrlPressed=false;
-							arrowUpCtrlAccel=0.01;
-							arrowDownCtrlAccel=0.01;
-							break;
 					}
 				});
+
+				var mouseDown = false;
+				var previousPageX;
+				var previousPageY;
+
+				$("body").mousedown(function(event) { mouseDown=true; });
+				$("body").mouseup(function(event) { mouseDown=false;
+					previousPageX = null;
+					previousPageY = null;
+				});
+				$("body").mousemove(function(event){
+					if (mouseDown) {
+						if(previousPageX && previousPageY ) {
+							deltaX = (event.pageX - previousPageX)/10;
+
+							viewObject.rotateY = viewObject.rotateY + deltaX;
+
+							//viewObject.originZ = viewObject.originZ - ()
+
+							updateCss();
+						}
+						previousPageX = event.pageX;
+						previousPageY = event.pageY;
+					}
+				})
+
+				function updateCss() {
+					$("#inner").attr("style", "-webkit-transform:translateX("+viewObject.translateX+"px) translateZ("+viewObject.translateZ+"px) translateY("+viewObject.translateY+"px) rotateY("+viewObject.rotateY+"deg);-webkit-transform-origin-z:"+viewObject.originZ+"px;-webkit-transform-origin-x:"+viewObject.originX+"px;");
+				}
 					
 			})
 		</script>
@@ -129,8 +231,107 @@
 
 		<div id="container">
 			<div id="inner">
-				<div id="sol_cours" class="plane">sol</div>
-				<div id="mur_1er_etage_aile_ouest" class="plane">mur</div>
+
+
+				<div id="wrapper">
+
+					<div id="sol_cours" class="plane oneside"></div>
+					<div id="tour_base" class="plane"></div>
+					<div id="tour_murouest" class="plane oneside"></div>
+					<div id="tour_murest" class="plane"></div>
+					<div id="tour_fenetreouest" class="plane"></div>
+					<div id="tour_fenetreest" class="plane"></div>
+
+					<div id="bac_ouest_1" class="bac">
+						<div class="front plane"></div>
+						<div class="back plane"></div>
+						<div class="left plane"></div>
+						<div class="right plane"></div>
+						<div class="tree plane"></div>
+						<div class="tree second plane"></div>
+					</div>
+
+					<div id="bac_ouest_2" class="bac">
+						<div class="front plane"></div>
+						<div class="back plane"></div>
+						<div class="left plane"></div>
+						<div class="right plane"></div>
+						<div class="tree plane"></div>
+						<div class="tree second plane"></div>
+					</div>
+
+					<div id="bac_ouest_3" class="bac">
+						<div class="front plane"></div>
+						<div class="back plane"></div>
+						<div class="left plane"></div>
+						<div class="right plane"></div>
+						<div class="tree plane"></div>
+						<div class="tree second plane"></div>
+					</div>
+
+					<div id="bac_ouest_4" class="bac">
+						<div class="front plane"></div>
+						<div class="back plane"></div>
+						<div class="left plane"></div>
+						<div class="right plane"></div>
+						<div class="tree plane"></div>
+						<div class="tree second plane"></div>
+					</div>
+
+					<div id="bac_ouest_5" class="bac">
+						<div class="front plane"></div>
+						<div class="back plane"></div>
+						<div class="left plane"></div>
+						<div class="right plane"></div>
+						<div class="tree plane"></div>
+						<div class="tree second plane"></div>
+					</div>
+
+					<div id="bac_est_1" class="bac">
+						<div class="front plane"></div>
+						<div class="back plane"></div>
+						<div class="left plane"></div>
+						<div class="right plane"></div>
+						<div class="tree plane"></div>
+						<div class="tree second plane"></div>
+					</div>
+
+					<div id="bac_est_2" class="bac">
+						<div class="front plane"></div>
+						<div class="back plane"></div>
+						<div class="left plane"></div>
+						<div class="right plane"></div>
+						<div class="tree plane"></div>
+						<div class="tree second plane"></div>
+					</div>
+
+					<div id="bac_est_3" class="bac">
+						<div class="front plane"></div>
+						<div class="back plane"></div>
+						<div class="left plane"></div>
+						<div class="right plane"></div>
+						<div class="tree plane"></div>
+						<div class="tree second plane"></div>
+					</div>
+
+					<div id="bac_est_4" class="bac">
+						<div class="front plane"></div>
+						<div class="back plane"></div>
+						<div class="left plane"></div>
+						<div class="right plane"></div>
+						<div class="tree plane"></div>
+						<div class="tree second plane"></div>
+					</div>
+
+					<div id="bac_est_5" class="bac">
+						<div class="front plane"></div>
+						<div class="back plane"></div>
+						<div class="left plane"></div>
+						<div class="right plane"></div>
+						<div class="tree plane"></div>
+						<div class="tree second plane"></div>
+					</div>
+				</div>
 			</div>
 		</div>
 
