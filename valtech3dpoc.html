@@ -22,7 +22,7 @@
 				display: block;
 				position: absolute;
 				background-size:100% 100%;
-				border:2px solid red;
+				/*border:2px solid red;*/
 			}
 			.oneside { -webkit-backface-visibility: hidden; }
 
@@ -67,7 +67,28 @@
 			}
 
 
+			#murcoursouest {
+				width:1200px; 
+				height:650px; 
+				-webkit-transform: translateY(-200px) translateX(-120px) rotateY(-90deg);
+				background-image: url('textures/murcours.jpg');	
+				background-size:10% 100%;
+			}
 
+			#murcoursouest_passagesud {
+				width:230px; 
+				height:450px; 
+				-webkit-transform: translateY(-200px) translateX(365px) translateZ(-715px) rotateY(-90deg);
+				background-image: url('textures/murcours.jpg');	
+				background-size:50% 140%;
+			}
+
+
+
+		</style>
+
+		<!-- Bacs à arbustes -->
+		<style type="text/css">
 			.bac .plane { 
 				width:50px;
 				height:50px;
@@ -146,7 +167,6 @@
 			#bac_est_5 .right { -webkit-transform: translateY(400px) translateX(-25px) translateZ(-325px) rotateY(90deg); }
 			#bac_est_5 .tree { -webkit-transform: translateY(300px) translateX(0px) translateZ(-325px);  }
 			#bac_est_5 .tree.second { -webkit-transform: translateY(300px) translateX(0px) translateZ(-325px) rotateY(90deg);  }
-
 		</style>
 
 
@@ -236,11 +256,16 @@
 				<div id="wrapper">
 
 					<div id="sol_cours" class="plane oneside"></div>
-					<div id="tour_base" class="plane"></div>
+					<div id="tour_base" class="plane oneside"></div>
 					<div id="tour_murouest" class="plane oneside"></div>
-					<div id="tour_murest" class="plane"></div>
-					<div id="tour_fenetreouest" class="plane"></div>
-					<div id="tour_fenetreest" class="plane"></div>
+					<div id="tour_murest" class="plane oneside"></div>
+					<div id="tour_fenetreouest" class="plane oneside"></div>
+					<div id="tour_fenetreest" class="plane oneside"></div>
+
+
+					<div id="murcoursouest" class="plane oneside"></div>
+					<div id="murcoursouest_passagesud" class="plane oneside"></div>
+
 
 					<div id="bac_ouest_1" class="bac">
 						<div class="front plane"></div>
